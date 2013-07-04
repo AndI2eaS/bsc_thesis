@@ -1,0 +1,27 @@
+php_flag display_errors off
+
+ReWriteEngine on
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.*)$ $1.php
+
+# MONTH
+<FilesMatch "\.(flv|gif|jpg|jpeg|png|ico|swf)$">
+   Header set Cache-Control "max-age=2592000"
+</FilesMatch>
+
+# WEEK
+<FilesMatch "\.(js|css|pdf|txt)$">
+   Header set Cache-Control "max-age=604800"
+</FilesMatch>
+
+# DAY
+<FilesMatch "\.(html|htm)$">
+   Header set Cache-Control "max-age=43200"
+</FilesMatch>
+
+# DONT CACHE
+<FilesMatch "\.(pl|php|cgi|spl|scgi|fcgi)$">
+   Header unset Cache-Control
+</FilesMatch>
